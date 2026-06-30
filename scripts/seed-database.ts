@@ -368,7 +368,7 @@ async function seedDatabase() {
   const homeSections = [
     {
       name: 'hero',
-      title: "Mostriamo il valore degli studenti dell'Insubria",
+      title: "La realtà che unisce il mondo accademico a quello del lavoro",
       subtitle: 'Consulenza, progetti e crescita: per aziende e studenti',
       description: 'Sezione principale della homepage con call-to-action',
       isActive: true,

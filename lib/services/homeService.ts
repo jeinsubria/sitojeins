@@ -8,11 +8,17 @@ import { prisma } from '@/lib/prisma'
 export async function getHomeData() {
   try {
     // Risolviamo prima le Promise indipendenti per ottimizzare i tempi
-    const projectsCount = prisma.project.count({ where: { isActive: true } })
-    const servicesCount = prisma.service.count({ where: { isActive: true } })
-    const applicationsCount = prisma.recruitmentApplication.count()
+    await prisma.homeSection.updateMany({
+      where: {
+        name: 'hero',
+        title: "Mostriamo il valore degli studenti dell'Insubria",
+      },
+      data: {
+        title: "La realtà che unisce il mondo accademico a quello del lavoro",
+      },
+    })
 
-    const [services, projects, pCount, sCount, aCount, sections] = await Promise.all([
+    const [services, projects, sections] = await Promise.all([
       prisma.service.findMany({
         where: { isActive: true },
         orderBy: { order: 'asc' },
@@ -23,9 +29,6 @@ export async function getHomeData() {
         orderBy: { order: 'asc' },
         take: 6
       }),
-      projectsCount,
-      servicesCount,
-      applicationsCount,
       prisma.homeSection.findMany({
         where: { isActive: true },
         orderBy: { order: 'asc' }
@@ -33,10 +36,10 @@ export async function getHomeData() {
     ])
 
     const stats = {
-      projects: pCount,
-      services: sCount,
-      applications: aCount,
-      team: 15 // Placeholder
+      projects: 10,
+      services: 6,
+      team: 35,
+      applications: 100,
     }
 
     const fallbackServices = [
@@ -49,12 +52,7 @@ export async function getHomeData() {
     return {
       services: services.length > 0 ? services : fallbackServices,
       projects,
-      stats: {
-        projects: pCount > 0 ? pCount : 45,
-        services: sCount > 0 ? sCount : 12,
-        applications: aCount > 0 ? aCount : 150,
-        team: 28
-      },
+      stats,
       sections: sections
     }
   } catch (error) {
@@ -68,7 +66,7 @@ export async function getHomeData() {
         { id: '3', title: 'E-commerce', description: 'Progettiamo soluzioni per la vendita online funzionali, semplici da usare e sostenibili, pensate per aprire o rafforzare un canale digitale.', sector: 'Digital' }
       ],
       projects: [],
-      stats: { projects: 45, services: 12, applications: 150, team: 28 },
+      stats: { projects: 10, services: 6, team: 35, applications: 100 },
       sections: []
     }
   }

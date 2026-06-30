@@ -25,7 +25,7 @@ export default async function HomePage() {
       {/* Hero Section */}
       {sectionConfig.hero?.isActive && (
         <Hero
-          title={sectionConfig.hero.title || "Mostriamo il valore degli studenti dell'Insubria"}
+          title={sectionConfig.hero.title || "La realtà che unisce il mondo accademico a quello del lavoro"}
           subtitle={sectionConfig.hero.subtitle || 'Consulenza, progetti e crescita: per aziende e studenti'}
           primaryCta="Richiedi un preventivo"
           secondaryCta="Unisciti a noi"
@@ -100,10 +100,10 @@ export default async function HomePage() {
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-white/5">
               {[
-                { value: stats.projects, suffix: '+', label: 'Progetti completati', sub: 'Con successo' },
-                { value: stats.services, suffix: '+', label: 'Servizi offerti', sub: 'Soddisfatte' },
-                { value: stats.team, suffix: '+', label: 'Membri attivi', sub: 'Studenti motivati' },
-                { value: stats.applications, suffix: '', label: 'Candidature', sub: 'Nel settore' }
+                { value: stats.projects, suffix: '+', label: 'Progetti', sub: '' },
+                { value: stats.services, suffix: '+', label: 'Servizi', sub: '' },
+                { value: stats.team, suffix: '+', label: 'Associati', sub: '' },
+                { value: stats.applications, suffix: '+', label: 'Candidature', sub: '' }
               ].map((stat, i) => (
                 <div key={i} className="px-8 py-6 text-center animate-scale-in" style={{animationDelay: `${i * 0.1}s`}}>
                   <div className="text-5xl md:text-7xl font-bold text-white mb-3 tracking-tighter">
@@ -112,9 +112,11 @@ export default async function HomePage() {
                   <div className="text-sm font-medium text-insubria-500 mb-1 uppercase tracking-widest">
                     {stat.label}
                   </div>
-                  <div className="text-xs text-neutral-600">
-                    {stat.sub}
-                  </div>
+                  {stat.sub && (
+                    <div className="text-xs text-neutral-600">
+                      {stat.sub}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

@@ -44,7 +44,7 @@ export default async function ChiSiamoPage() {
               Chi siamo
             </h1>
             <p className="text-xl max-w-3xl mx-auto text-neutral-400 font-light leading-relaxed">
-              JUNIOR ENTERPRISE DELL’UNIVERSITA’ DEGLI STUDI DELL’INSUBRIA è un ponte tra il mondo accademico e quello professionale.
+              JUNIOR ENTERPRISE DELL’UNIVERSITA’ DEGLI STUDI DELL’INSUBRIA è una associazione studentesca senza scopo di lucro, con chiare Mission e Vision:
             </p>
           </div>
         </div>
