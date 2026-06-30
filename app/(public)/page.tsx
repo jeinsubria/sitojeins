@@ -1,40 +1,14 @@
-import Hero from '@/components/Hero'
-import ServiceCard from '@/components/ServiceCard'
-import StatsCard from '@/components/StatsCard'
-import PortfolioCard from '@/components/PortfolioCard'
-import NewsletterBox from '@/components/NewsletterBox'
-import ContactForm from '@/components/ContactForm'
-import { prisma } from '@/lib/prisma'
+import Hero from '@/components/sections/Hero'
+import ServiceCard from '@/components/ui/ServiceCard'
+import StatsCard from '@/components/ui/StatsCard'
+import PortfolioCard from '@/components/ui/PortfolioCard'
+import NewsletterBox from '@/components/sections/NewsletterBox'
+import ContactForm from '@/components/sections/ContactForm'
+import AnimatedNumber from '@/components/ui/AnimatedNumber'
+import { getHomeData } from '@/lib/services/homeService'
 
 // Ricarica i dati ogni 60 secondi (ISR - Incremental Static Regeneration)
 export const revalidate = 60
-
-async function getHomeData() {
-  const [services, projects, stats, sections] = await Promise.all([
-    prisma.service.findMany({
-      where: { isActive: true },
-      orderBy: { order: 'asc' },
-      take: 3
-    }),
-    prisma.project.findMany({
-      where: { isActive: true },
-      orderBy: { order: 'asc' },
-      take: 6
-    }),
-    {
-      projects: await prisma.project.count({ where: { isActive: true } }),
-      services: await prisma.service.count({ where: { isActive: true } }),
-      applications: await prisma.recruitmentApplication.count(),
-      team: 15 // Placeholder per ora
-    },
-    prisma.homeSection.findMany({
-      where: { isActive: true },
-      orderBy: { order: 'asc' }
-    })
-  ])
-
-  return { services, projects, stats, sections }
-}
 
 export default async function HomePage() {
   const { services, projects, stats, sections } = await getHomeData()
@@ -62,43 +36,83 @@ export default async function HomePage() {
 
       {/* Servizi in evidenza */}
       {sectionConfig.services?.isActive && (
-        <section className="py-20 section-white relative overflow-hidden">
-          {/* Elementi decorativi */}
-          <div className="decorative-corner top-0 left-0"></div>
-          <div className="decorative-corner-bottom-right bottom-0 right-0"></div>
-          <div className="decorative-strip decorative-strip-top"></div>
-          
+        <section className="py-32 relative overflow-hidden">
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16 animate-slide-in-top">
-              <h2 className="text-4xl font-bold mb-6 newspaper-headline">
+            <div className="mb-20 animate-slide-in-top">
+              <h2 className="text-4xl md:text-5xl font-bold newspaper-headline">
                 {sectionConfig.services.title || 'I nostri servizi'}
               </h2>
-              <p className="text-neutral-500 text-xl max-w-3xl mx-auto">
-                {sectionConfig.services.subtitle || 'Soluzioni innovative e personalizzate per aziende di ogni dimensione. Il nostro team di studenti qualificati offre consulenza professionale in diversi settori.'}
+            </div>
+
+            <div className="divide-y divide-white/5">
+              {services.map((service, index) => (
+                <div
+                  key={service.id}
+                  className="py-10 grid grid-cols-[32px_1fr_auto] gap-8 items-center group animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.08}s` }}
+                >
+                  <span className="text-sm text-neutral-600 font-light">
+                    {index + 1}.
+                  </span>
+                  <div>
+                    <span className="text-xs text-insubria-500 font-semibold tracking-wide uppercase mb-2 block">
+                      {service.sector}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-semibold text-white group-hover:text-insubria-400 transition-colors">
+                      {service.title}
+                    </h3>
+                  </div>
+                  <a
+                    href="/servizi"
+                    className="text-neutral-600 group-hover:text-white group-hover:translate-x-1 transition-all text-xl"
+                    aria-label={`Scopri ${service.title}`}
+                  >
+                    →
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-16">
+              <a href="/servizi" className="cta-secondary inline-flex items-center gap-2">
+                Tutti i servizi →
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* I nostri numeri */}
+      {sectionConfig.stats?.isActive && (
+        <section className="py-32 relative">
+
+          
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-24 animate-slide-in-bottom">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 newspaper-headline">
+                {sectionConfig.stats.title || 'I nostri numeri'}
+              </h2>
+              <p className="text-neutral-400 text-lg md:text-xl max-w-3xl mx-auto font-light leading-relaxed">
+                {sectionConfig.stats.subtitle || 'Risultati che testimoniano il nostro impegno e la nostra crescita nel territorio insubre'}
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
-              {services.map((service, index) => (
-                <div key={service.id} className="animate-fade-in-left hover-lift h-full w-full" style={{animationDelay: `${index * 0.1}s`}}>
-                  <div className="bg-white border-2 border-insubria-200 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-shadow duration-300 h-full flex flex-col overflow-hidden">
-                    <div className="mb-4">
-                      <span className="bg-insubria-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                        {service.sector}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-insubria-600 mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-neutral-500 mb-4 flex-grow">
-                      {service.description}
-                    </p>
-                    <a
-                      href="/contatti"
-                      className="inline-block text-insubria-600 font-medium hover:text-insubria-700 transition-colors mt-auto"
-                    >
-                      Richiedi un preventivo →
-                    </a>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-white/5">
+              {[
+                { value: stats.projects, suffix: '+', label: 'Progetti completati', sub: 'Con successo' },
+                { value: stats.services, suffix: '+', label: 'Servizi offerti', sub: 'Soddisfatte' },
+                { value: stats.team, suffix: '+', label: 'Membri attivi', sub: 'Studenti motivati' },
+                { value: stats.applications, suffix: '', label: 'Candidature', sub: 'Nel settore' }
+              ].map((stat, i) => (
+                <div key={i} className="px-8 py-6 text-center animate-scale-in" style={{animationDelay: `${i * 0.1}s`}}>
+                  <div className="text-5xl md:text-7xl font-bold text-white mb-3 tracking-tighter">
+                    <AnimatedNumber value={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <div className="text-sm font-medium text-insubria-500 mb-1 uppercase tracking-widest">
+                    {stat.label}
+                  </div>
+                  <div className="text-xs text-neutral-600">
+                    {stat.sub}
                   </div>
                 </div>
               ))}
@@ -107,96 +121,17 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* I nostri numeri */}
-      {sectionConfig.stats?.isActive && (
-        <section className="py-20 section-green relative">
-          {/* Elementi decorativi */}
-          <div className="decorative-corner top-0 right-0" style={{clipPath: 'polygon(100% 0, 100% 100%, 0 0)'}}></div>
-          <div className="decorative-corner-bottom-right bottom-0 left-0" style={{clipPath: 'polygon(0 0, 100% 100%, 0 100%)'}}></div>
-          <div className="decorative-strip decorative-strip-bottom"></div>
-          
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16 animate-slide-in-bottom">
-              <h2 className="text-4xl font-bold mb-6 newspaper-headline">
-                {sectionConfig.stats.title || 'I nostri numeri'}
-              </h2>
-              <p className="text-xl max-w-3xl mx-auto">
-                {sectionConfig.stats.subtitle || 'Risultati che testimoniano il nostro impegno e la nostra crescita nel territorio insubre'}
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="animate-scale-in hover-lift">
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                    {stats.projects}+
-                  </div>
-                  <div className="text-lg font-semibold mb-1">
-                    Progetti completati
-                  </div>
-                  <div className="text-sm opacity-90">
-                    Con successo
-                  </div>
-                </div>
-              </div>
-              <div className="animate-scale-in hover-lift" style={{animationDelay: '0.1s'}}>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                    {stats.services}+
-                  </div>
-                  <div className="text-lg font-semibold mb-1">
-                    Servizi offerti
-                  </div>
-                  <div className="text-sm opacity-90">
-                    Soddisfatte
-                  </div>
-                </div>
-              </div>
-              <div className="animate-scale-in hover-lift" style={{animationDelay: '0.2s'}}>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                    {stats.team}+
-                  </div>
-                  <div className="text-lg font-semibold mb-1">
-                    Membri attivi
-                  </div>
-                  <div className="text-sm opacity-90">
-                    Studenti motivati
-                  </div>
-                </div>
-              </div>
-              <div className="animate-scale-in hover-lift" style={{animationDelay: '0.3s'}}>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                    {stats.applications}
-                  </div>
-                  <div className="text-lg font-semibold mb-1">
-                    Candidature
-                  </div>
-                  <div className="text-sm opacity-90">
-                    Nel settore
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Portfolio/Case Studies */}
-      {sectionConfig.portfolio?.isActive && (
-        <section className="py-20 section-green-light relative">
-          {/* Elementi decorativi */}
-          <div className="decorative-corner top-0 left-0"></div>
-          <div className="decorative-corner-bottom-right bottom-0 right-0"></div>
-          <div className="decorative-strip decorative-strip-top"></div>
+      {sectionConfig.portfolio?.isActive && projects.length > 0 && (
+        <section className="py-32 relative">
+
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16 animate-zoom-in">
-              <h2 className="text-4xl font-bold mb-6 newspaper-headline">
+            <div className="text-center mb-24 animate-zoom-in">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 newspaper-headline">
                 {sectionConfig.portfolio.title || 'I nostri progetti'}
               </h2>
-              <p className="text-neutral-500 text-xl max-w-3xl mx-auto">
+              <p className="text-neutral-400 text-lg md:text-xl max-w-3xl mx-auto font-light leading-relaxed">
                 {sectionConfig.portfolio.subtitle || 'Alcuni esempi dei progetti che abbiamo realizzato per i nostri clienti, dimostrando la nostra capacità di innovazione e problem solving.'}
               </p>
             </div>
@@ -205,35 +140,35 @@ export default async function HomePage() {
               {projects.map((project, index) => {
                 const tags = project.tags ? JSON.parse(project.tags) : []
                 return (
-                  <div key={project.id} className="animate-fade-in-left hover-lift h-full card-standard" style={{animationDelay: `${index * 0.1}s`}}>
-                    <div className="bg-white border-2 border-insubria-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
-                      <div className="h-48 bg-insubria-50 flex items-center justify-center">
+                  <div key={project.id} className="animate-fade-in-left hover-lift h-full card-standard w-full" style={{animationDelay: `${index * 0.1}s`}}>
+                    <div className="newspaper-card h-full flex flex-col">
+                      <div className="h-56 bg-neutral-900 border-b border-white/10 flex items-center justify-center relative overflow-hidden">
                         {project.image ? (
                           <img 
                             src={project.image} 
                             alt={project.title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500"
                           />
                         ) : (
-                          <div className="text-insubria-600 text-center">
-                            <div className="text-4xl mb-2">📊</div>
-                            <div className="text-sm font-medium">{project.title}</div>
+                          <div className="text-insubria-500/20 text-center">
+                            <div className="text-6xl mb-2">📊</div>
                           </div>
                         )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-80"></div>
                       </div>
-                      <div className="p-6 flex-grow flex flex-col">
-                        <p className="text-sm text-insubria-600 font-medium mb-2">
+                      <div className="p-8 flex-grow flex flex-col">
+                        <p className="text-xs text-insubria-500 font-bold tracking-widest uppercase mb-3">
                           {project.client || 'JEIns'}
                         </p>
-                        <h3 className="text-lg font-semibold text-insubria-600 mb-2">
+                        <h3 className="text-2xl font-bold text-white mb-3">
                           {project.title}
                         </h3>
-                        <p className="text-neutral-500 mb-4 flex-grow">
+                        <p className="text-neutral-400 mb-6 flex-grow font-light leading-relaxed">
                           {project.description}
                         </p>
                         <div className="flex flex-wrap gap-2 mt-auto">
                           {tags.slice(0, 3).map((tag: string, tagIndex: number) => (
-                            <span key={tagIndex} className="bg-insubria-50 text-insubria-600 px-2 py-1 rounded text-xs">
+                            <span key={tagIndex} className="bg-white/5 border border-white/10 text-neutral-300 px-3 py-1 rounded-full text-xs font-medium">
                               {tag}
                             </span>
                           ))}
@@ -250,11 +185,8 @@ export default async function HomePage() {
 
       {/* Newsletter */}
       {sectionConfig.newsletter?.isActive && (
-        <section className="py-20 section-green relative overflow-hidden">
-          {/* Elementi decorativi */}
-          <div className="decorative-corner top-0 right-0" style={{clipPath: 'polygon(100% 0, 100% 100%, 0 0)'}}></div>
-          <div className="decorative-corner-bottom-right bottom-0 left-0" style={{clipPath: 'polygon(0 0, 100% 100%, 0 100%)'}}></div>
-          <div className="decorative-strip decorative-strip-bottom"></div>
+        <section className="py-32 relative overflow-hidden">
+
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="animate-fade-in-up">
@@ -266,11 +198,8 @@ export default async function HomePage() {
 
       {/* Contatto rapido */}
       {sectionConfig.contact?.isActive && (
-        <section className="py-20 section-white relative">
-          {/* Elementi decorativi */}
-          <div className="decorative-corner top-0 left-0"></div>
-          <div className="decorative-corner-bottom-right bottom-0 right-0"></div>
-          <div className="decorative-strip decorative-strip-top"></div>
+        <section className="py-32 relative">
+
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="animate-fade-in-up">

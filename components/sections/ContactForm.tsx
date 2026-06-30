@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Filigrana from './Filigrana'
 
 interface ContactFormProps {
   title?: string
@@ -21,6 +20,8 @@ export default function ContactForm({
     consent: false
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
@@ -33,11 +34,23 @@ export default function ContactForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // TODO: Integrare con endpoint reale o Google Forms
-    // Per ora simuliamo l'invio
-    setTimeout(() => {
-      setIsSubmitting(false)
+    setSubmitStatus('idle')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Errore nell\'invio del messaggio')
+      }
+
+      setSubmitStatus('success')
       setFormData({
         name: '',
         email: '',
@@ -46,21 +59,22 @@ export default function ContactForm({
         message: '',
         consent: false
       })
-      alert('Messaggio inviato! (Simulazione)')
-    }, 1000)
+    } catch (error) {
+      setSubmitStatus('error')
+      setErrorMessage(error instanceof Error ? error.message : 'Errore nell\'invio del messaggio')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
-    <div className="max-w-2xl mx-auto relative">
-      {/* Filigrane decorative */}
-      <Filigrana position="left" size="sm" opacity={0.03} />
-      <Filigrana position="right" size="md" opacity={0.02} />
+    <div className="max-w-2xl mx-auto relative newspaper-card p-8 md:p-12">
       
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold mb-4 newspaper-headline">
+        <h2 className="text-3xl font-bold mb-4 newspaper-headline text-white">
           {title}
         </h2>
-        <p className="text-neutral-500">
+        <p className="text-neutral-400 font-light">
           {description}
         </p>
       </div>
@@ -68,7 +82,7 @@ export default function ContactForm({
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-neutral-900 mb-2">
+            <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
               Nome e Cognome *
             </label>
             <input
@@ -78,12 +92,12 @@ export default function ContactForm({
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 rounded-2xl border border-insubria-200 focus:outline-none focus:ring-2 focus:ring-insubria-600 focus:border-insubria-600"
+              className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-insubria-500 transition-colors"
             />
           </div>
           
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-neutral-900 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
               Email *
             </label>
             <input
@@ -93,14 +107,14 @@ export default function ContactForm({
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 rounded-2xl border border-insubria-200 focus:outline-none focus:ring-2 focus:ring-insubria-600 focus:border-insubria-600"
+              className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-insubria-500 transition-colors"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="company" className="block text-sm font-medium text-neutral-900 mb-2">
+            <label htmlFor="company" className="block text-sm font-medium text-white mb-2">
               Azienda
             </label>
             <input
@@ -109,12 +123,12 @@ export default function ContactForm({
               name="company"
               value={formData.company}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-2xl border border-insubria-200 focus:outline-none focus:ring-2 focus:ring-insubria-600 focus:border-insubria-600"
+              className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-insubria-500 transition-colors"
             />
           </div>
           
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-neutral-900 mb-2">
+            <label htmlFor="phone" className="block text-sm font-medium text-white mb-2">
               Telefono
             </label>
             <input
@@ -123,13 +137,13 @@ export default function ContactForm({
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-2xl border border-insubria-200 focus:outline-none focus:ring-2 focus:ring-insubria-600 focus:border-insubria-600"
+              className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-insubria-500 transition-colors"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-neutral-900 mb-2">
+          <label htmlFor="message" className="block text-sm font-medium text-white mb-2">
             Messaggio *
           </label>
           <textarea
@@ -139,12 +153,12 @@ export default function ContactForm({
             onChange={handleChange}
             required
             rows={5}
-            className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-insubria-green-500"
+            className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-insubria-500 transition-colors"
             placeholder="Descrivi il tuo progetto o la tua richiesta..."
           />
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           <input
             type="checkbox"
             id="consent"
@@ -152,21 +166,32 @@ export default function ContactForm({
             checked={formData.consent}
             onChange={handleChange}
             required
-            className="rounded"
+            className="w-5 h-5 rounded border-white/20 bg-white/5 text-insubria-500 focus:ring-insubria-500 focus:ring-offset-neutral-950"
           />
-          <label htmlFor="consent" className="text-sm text-neutral-700">
+          <label htmlFor="consent" className="text-sm text-neutral-400">
             Acconsento al trattamento dei dati personali secondo la{' '}
-            <a href="/privacy" className="text-insubria-600 hover:underline">
+            <a href="/privacy" className="text-insubria-500 hover:text-white transition-colors font-medium">
               Privacy Policy
             </a>
             *
           </label>
         </div>
 
+        {submitStatus === 'success' && (
+          <p className="text-insubria-400 text-sm text-center">
+            Messaggio inviato con successo! Ti risponderemo al più presto.
+          </p>
+        )}
+        {submitStatus === 'error' && (
+          <p className="text-red-400 text-sm text-center">
+            {errorMessage}
+          </p>
+        )}
+
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-insubria-600 text-white py-4 rounded-2xl font-semibold hover:bg-insubria-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full cta-primary py-4 text-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
           {isSubmitting ? 'Invio in corso...' : 'Invia messaggio'}
         </button>

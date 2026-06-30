@@ -209,13 +209,22 @@ async function seedDatabase() {
   // Create recruitment status
   await prisma.recruitment.create({
     data: {
-      isOpen: true,
+      isOpen: false,
       openDate: new Date('2024-01-01'),
       closeDate: new Date('2024-03-31'),
       description: "Stiamo cercando studenti motivati e intraprendenti per entrare a far parte del nostro team. Offriamo opportunità di crescita professionale, progetti reali e un ambiente stimolante per sviluppare le tue competenze.",
       requirements: "Studenti iscritti all'Università dell'Insubria, buone capacità comunicative, spirito di squadra e voglia di mettersi in gioco.",
       benefits: "Esperienza professionale reale, networking con aziende, sviluppo di competenze trasversali, certificazioni e possibilità di crescita personale e professionale.",
-      googleFormUrl: "https://forms.gle/example"
+      faqs: JSON.stringify([
+        {
+          question: "Quando sono aperti i periodi di recruitment?",
+          answer: "Il recruitment apre due volte all'anno: in autunno e in primavera. Segui i nostri canali social per sapere esattamente quando viene aperto il prossimo ciclo di selezione."
+        },
+        {
+          question: "Come funziona il processo di selezione?",
+          answer: "Il processo prevede una prima valutazione del CV, seguita da un colloquio conoscitivo e, se necessario, da un test pratico specifico per il ruolo."
+        }
+      ]),
     }
   })
 
@@ -261,7 +270,7 @@ async function seedDatabase() {
 
   // Update contacts with real data
   const contacts = [
-    { type: 'email', value: 'info@jeins.it', label: 'Email principale' },
+    { type: 'email', value: 'jeinsubria@gmail.com', label: 'Email principale' },
     { type: 'phone', value: '+39 0332 218811', label: 'Telefono' },
     { type: 'address', value: 'Via Ravasi, 2, 21100 Varese VA', label: 'Sede principale' },
     { type: 'facebook', value: 'https://facebook.com/jeins.insubria', label: 'Facebook' },
@@ -287,7 +296,7 @@ async function seedDatabase() {
       title: 'Privacy Policy',
       content: `
         <h2>1. Informazioni sul trattamento</h2>
-        <p>JEIns - Junior Enterprise Insubria, con sede in Via Ravasi, 2, 21100 Varese VA, è il titolare del trattamento dei dati personali.</p>
+        <p>JUNIOR ENTERPRISE DELL'UNIVERSITA' DEGLI STUDI DELL'INSUBRIA, con sede in Via Stefano da Seregno n. 31, 20831 Seregno (MB), è il titolare del trattamento dei dati personali.</p>
         
         <h2>2. Dati raccolti</h2>
         <p>Raccogliamo i seguenti tipi di dati personali: nome, cognome, email, telefono, corso di studi, anno di iscrizione.</p>
@@ -299,7 +308,7 @@ async function seedDatabase() {
         <p>L'interessato ha diritto di accesso, rettifica, cancellazione, limitazione del trattamento e portabilità dei dati.</p>
         
         <h2>5. Contatti</h2>
-        <p>Per esercitare i propri diritti, contattare: info@jeins.it</p>
+        <p>Per esercitare i propri diritti, contattare: jeinsubria@gmail.com</p>
       `,
       version: '1.0'
     },
@@ -326,16 +335,16 @@ async function seedDatabase() {
       title: 'Termini e Condizioni',
       content: `
         <h2>1. Oggetto</h2>
-        <p>I presenti termini e condizioni regolano l'utilizzo del sito web e dei servizi offerti da JEIns.</p>
+        <p>I presenti termini e condizioni regolano l'utilizzo del sito web e dei servizi offerti da JUNIOR ENTERPRISE DELL'UNIVERSITA' DEGLI STUDI DELL'INSUBRIA.</p>
         
         <h2>2. Servizi offerti</h2>
-        <p>JEIns offre servizi di consulenza aziendale, sviluppo software, marketing digitale e formazione.</p>
+        <p>JUNIOR ENTERPRISE DELL'UNIVERSITA' DEGLI STUDI DELL'INSUBRIA offre servizi di consulenza aziendale, sviluppo software, marketing digitale e formazione.</p>
         
         <h2>3. Responsabilità</h2>
-        <p>JEIns si impegna a fornire servizi di qualità, mantenendo la massima professionalità e riservatezza.</p>
+        <p>JUNIOR ENTERPRISE DELL'UNIVERSITA' DEGLI STUDI DELL'INSUBRIA si impegna a fornire servizi di qualità, mantenendo la massima professionalità e riservatezza.</p>
         
         <h2>4. Modifiche</h2>
-        <p>JEIns si riserva il diritto di modificare i presenti termini e condizioni in qualsiasi momento.</p>
+        <p>JUNIOR ENTERPRISE DELL'UNIVERSITA' DEGLI STUDI DELL'INSUBRIA si riserva il diritto di modificare i presenti termini e condizioni in qualsiasi momento.</p>
         
         <h2>5. Legge applicabile</h2>
         <p>I presenti termini sono regolati dalla legge italiana.</p>
@@ -386,7 +395,7 @@ async function seedDatabase() {
       title: 'I nostri progetti',
       subtitle: 'Alcuni esempi dei progetti che abbiamo realizzato',
       description: 'Mostra i primi 6 progetti attivi',
-      isActive: true,
+      isActive: false,
       order: 4
     },
     {

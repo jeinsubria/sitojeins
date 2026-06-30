@@ -36,12 +36,12 @@ async function main() {
 
   // Create default contacts
   const defaultContacts = [
-    { type: 'email', value: 'info@jeins.it', label: 'Email principale' },
-    { type: 'phone', value: '+39 0332 218811', label: 'Telefono' },
-    { type: 'address', value: 'Via Ravasi, 2, 21100 Varese VA', label: 'Sede principale' },
-    { type: 'facebook', value: 'https://facebook.com/jeins.insubria', label: 'Facebook' },
-    { type: 'instagram', value: 'https://instagram.com/jeins_insubria', label: 'Instagram' },
-    { type: 'linkedin', value: 'https://linkedin.com/company/jeins', label: 'LinkedIn' },
+    { type: 'email', value: 'jeinsubria@gmail.com', label: 'Email principale' },
+    { type: 'phone', value: '+39 3298999219', label: 'Telefono' },
+    { type: 'address', value: 'Via Stefano da Seregno n.31, 20831 Seregno (MB)', label: 'Sede legale' },
+    { type: 'facebook', value: 'https://www.facebook.com/jeinsubria', label: 'Facebook' },
+    { type: 'instagram', value: 'https://www.instagram.com/jeinsubria', label: 'Instagram' },
+    { type: 'linkedin', value: 'https://linkedin.com/company/jeinsubria', label: 'LinkedIn' },
   ]
 
   for (const contact of defaultContacts) {

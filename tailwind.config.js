@@ -8,41 +8,91 @@ module.exports = {
     extend: {
       colors: {
         'insubria': {
-          50: '#D9EAE7',
-          200: '#99C6C0',
-          300: '#4C9C90',
-          600: '#007161',
-          700: '#006052',
+          50: '#ecfdf5',
+          100: '#d1fae5',
+          200: '#a7f3d0',
+          300: '#6ee7b7',
+          400: '#34d399',
+          500: '#10b981', // Accent vibrante (tipo Emerald)
+          600: '#007161', // Brand Originale
+          700: '#047857',
+          800: '#004036',
+          900: '#022c22',
+          950: '#011812',
         },
         'neutral': {
-          100: '#E5E7EB',
-          500: '#64748B',
-          900: '#0F172A',
-        },
-        'newspaper': {
-          'yellow': '#FEEB99',
-          'gold': '#FFD700',
-          'blue': '#0056B3',
-          'orange': '#FF4500',
-          'red': '#FF0000',
-          'light-blue': '#ADD8E6',
-          'dark-green': '#006400',
+          100: '#f5f5f5',
+          500: '#737373',
+          800: '#262626',
+          900: '#171717',
+          950: '#0a0a0a', // Sfondo principale Dark Mode
         }
       },
       fontFamily: {
-        'montserrat': ['Montserrat', 'sans-serif'],
-        'newspaper': ['Georgia', 'serif'],
+        'inter': ['var(--font-inter)', 'sans-serif'],
       },
       borderRadius: {
         '2xl': '1rem',
+        '3xl': '1.5rem',
       },
       boxShadow: {
-        'sm': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-        'newspaper': '0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06)',
+        'sm': '0 1px 2px 0 rgb(0 0 0 / 0.1)',
+        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+        'premium': '0 10px 30px -10px rgba(16, 185, 129, 0.15)', // Neon green glow
       },
       backgroundImage: {
-        'newspaper-texture': 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23f3f4f6\' fill-opacity=\'0.1\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'1\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-        'halftone': 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0)',
+        'halftone': 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
+        'gradient-insubria': 'linear-gradient(135deg, rgba(0, 113, 97, 0.2) 0%, rgba(16, 185, 129, 0.05) 100%)',
+        'gradient-dark': 'linear-gradient(135deg, #0a0a0a 0%, #022c22 100%)',
+      },
+      keyframes: {
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeInLeft: {
+          '0%': { opacity: '0', transform: 'translateX(-30px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        fadeInRight: {
+          '0%': { opacity: '0', transform: 'translateX(30px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        scaleIn: {
+          '0%': { opacity: '0', transform: 'scale(0.9)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        slideInFromBottom: {
+          '0%': { opacity: '0', transform: 'translateY(50px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideInFromTop: {
+          '0%': { opacity: '0', transform: 'translateY(-50px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        zoomIn: {
+          '0%': { opacity: '0', transform: 'scale(0.8)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        }
+      },
+      animation: {
+        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+        'fade-in-left': 'fadeInLeft 0.6s ease-out forwards',
+        'fade-in-right': 'fadeInRight 0.6s ease-out forwards',
+        'scale-in': 'scaleIn 0.5s ease-out forwards',
+        'float': 'float 3s ease-in-out infinite',
+        'slide-up': 'slideUp 0.3s ease-out forwards',
+        'slide-in-bottom': 'slideInFromBottom 0.8s ease-out forwards',
+        'slide-in-top': 'slideInFromTop 0.8s ease-out forwards',
+        'zoom-in': 'zoomIn 0.6s ease-out forwards',
       }
     },
   },

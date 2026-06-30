@@ -1,4 +1,4 @@
-import ContactForm from '@/components/ContactForm'
+import ContactForm from '@/components/sections/ContactForm'
 import { prisma } from '@/lib/prisma'
 import type { Metadata } from 'next'
 

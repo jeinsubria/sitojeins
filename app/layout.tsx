@@ -1,16 +1,15 @@
 import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import CookieBanner from '@/components/CookieBanner'
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
+import CookieBanner from '@/components/layout/CookieBanner'
 import StructuredData from '@/components/StructuredData'
 import AuthProvider from '@/components/AuthProvider'
 
-const montserrat = Montserrat({ 
+const inter = Inter({ 
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-montserrat'
+  variable: '--font-inter'
 })
 
 export const metadata: Metadata = {
@@ -68,11 +67,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="it">
+    <html lang="it" className="dark">
       <head>
         <StructuredData />
       </head>
-      <body className={`${montserrat.variable} font-montserrat antialiased`}>
+      <body className={`${inter.variable} font-inter antialiased bg-insubria-900 text-neutral-200 selection:bg-insubria-500/30 selection:text-insubria-100`}>
         <AuthProvider>
           {children}
           <CookieBanner />

@@ -67,7 +67,7 @@ export default function ContactForm({ contact }: ContactFormProps) {
   const getPlaceholder = (type: string) => {
     switch (type) {
       case 'email':
-        return 'info@jeins.it'
+        return 'jeinsubria@gmail.com'
       case 'phone':
         return '+39 0332 218811'
       case 'address':

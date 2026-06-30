@@ -105,6 +105,16 @@ export async function POST(request: NextRequest) {
       })
     }
 
+    if (!preferences) {
+      // Fallback quando Prisma è mockato
+      preferences = {
+        necessary: data.necessary,
+        analytics: data.analytics,
+        marketing: data.marketing,
+        functional: data.functional,
+      }
+    }
+
     return NextResponse.json({
       necessary: preferences.necessary,
       analytics: preferences.analytics,

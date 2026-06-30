@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Filigrana from './Filigrana'
+import Filigrana from '../ui/Filigrana'
 
 export default function RecruitmentForm() {
   const [formData, setFormData] = useState({

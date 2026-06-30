@@ -6,8 +6,8 @@ export default function StructuredData() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "JEIns - Junior Enterprise Insubria",
-    "alternateName": "JEIns",
+    "name": "JUNIOR ENTERPRISE DELL'UNIVERSITA' DEGLI STUDI DELL'INSUBRIA",
+    "alternateName": ["JEIns", "JEIns Consulting"],
     "description": "Junior Enterprise dell'Università dell'Insubria che offre consulenza aziendale, progetti di ricerca e opportunità di crescita per studenti e aziende.",
     "url": "https://jeins.it",
     "logo": "https://jeins.it/images/logo-jeins.png",
@@ -15,20 +15,22 @@ export default function StructuredData() {
     "foundingDate": "2020",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Varese",
+      "streetAddress": "Via Stefano da Seregno n. 31",
+      "addressLocality": "Seregno",
+      "postalCode": "20831",
       "addressRegion": "Lombardia",
       "addressCountry": "IT"
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+39-XXX-XXX-XXXX",
+      "telephone": "+39-3298999219",
       "contactType": "customer service",
-      "email": "info@jeins.it"
+      "email": "jeinsubria@gmail.com"
     },
     "sameAs": [
-      "https://www.linkedin.com/company/jeins",
-      "https://www.instagram.com/jeins_insubria",
-      "https://www.facebook.com/jeins.insubria"
+      "https://www.linkedin.com/company/jeinsubria",
+      "https://www.instagram.com/jeinsubria",
+      "https://www.facebook.com/jeinsubria"
     ],
     "memberOf": {
       "@type": "Organization",
@@ -44,28 +46,28 @@ export default function StructuredData() {
       "@type": "GeoCircle",
       "geoMidpoint": {
         "@type": "GeoCoordinates",
-        "latitude": 45.8206,
-        "longitude": 8.8251
+        "latitude": 45.6503,
+        "longitude": 9.2062
       },
       "geoRadius": "50000"
     },
     "offers": [
       {
         "@type": "Offer",
-        "name": "Consulenza Aziendale",
-        "description": "Servizi di consulenza strategica per aziende",
+        "name": "Business Plan",
+        "description": "Analisi strategica e documento di business plan",
         "category": "Business Consulting"
       },
       {
-        "@type": "Offer", 
+        "@type": "Offer",
         "name": "Sviluppo Web",
         "description": "Sviluppo di siti web e applicazioni",
         "category": "Web Development"
       },
       {
         "@type": "Offer",
-        "name": "Marketing Digitale",
-        "description": "Servizi di marketing digitale e social media",
+        "name": "Comunicazione & Marketing",
+        "description": "Servizi di comunicazione e marketing digitale",
         "category": "Digital Marketing"
       }
     ]
