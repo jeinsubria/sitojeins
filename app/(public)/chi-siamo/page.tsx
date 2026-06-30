@@ -1,5 +1,6 @@
 import TeamMember from '@/components/ui/TeamMember'
 import { prisma } from '@/lib/prisma'
+import type { TeamMember as TeamMemberModel } from '@prisma/client'
 
 import type { Metadata } from 'next'
 
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   },
 }
 
-async function getTeamMembers() {
+async function getTeamMembers(): Promise<TeamMemberModel[]> {
   const members = await prisma.teamMember.findMany({
     where: { isActive: true },
     orderBy: { order: 'asc' }

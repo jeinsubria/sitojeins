@@ -28,7 +28,7 @@ export default function GlobalError({
         </h1>
         
         <p className="text-neutral-500 mb-8 leading-relaxed">
-          Ci scusiamo per l'inconveniente, ma sembra ci sia stato un errore di comunicazione con i nostri server o il database. Il nostro team tecnico è stato informato.
+          Ci scusiamo per l&apos;inconveniente, ma sembra ci sia stato un errore di comunicazione con i nostri server o il database. Il nostro team tecnico è stato informato.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

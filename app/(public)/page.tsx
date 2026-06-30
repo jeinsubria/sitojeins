@@ -6,6 +6,7 @@ import NewsletterBox from '@/components/sections/NewsletterBox'
 import ContactForm from '@/components/sections/ContactForm'
 import AnimatedNumber from '@/components/ui/AnimatedNumber'
 import { getHomeData } from '@/lib/services/homeService'
+import type { HomeSection } from '@prisma/client'
 
 // Ricarica i dati ogni 60 secondi (ISR - Incremental Static Regeneration)
 export const revalidate = 60
@@ -14,10 +15,10 @@ export default async function HomePage() {
   const { services, projects, stats, sections } = await getHomeData()
   
   // Crea un oggetto per accedere facilmente alle configurazioni delle sezioni
-  const sectionConfig = sections.reduce((acc, section) => {
+  const sectionConfig = sections.reduce((acc: Record<string, HomeSection>, section: HomeSection) => {
     acc[section.name] = section
     return acc
-  }, {} as Record<string, any>)
+  }, {} as Record<string, HomeSection>)
 
   return (
     <main>

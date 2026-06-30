@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 
 const globalForPrisma = globalThis as unknown as {
-  prisma: any | undefined
+  prisma: PrismaClient | undefined
 }
 
 const basePrisma = new PrismaClient()
@@ -54,8 +54,8 @@ const proxyPrisma = new Proxy(basePrisma, {
       return value;
     }
   }
-});
+}) as PrismaClient;
 
-export const prisma = globalForPrisma.prisma ?? proxyPrisma
+export const prisma: PrismaClient = globalForPrisma.prisma ?? proxyPrisma
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma

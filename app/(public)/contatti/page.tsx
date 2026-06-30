@@ -1,5 +1,6 @@
 import ContactForm from '@/components/sections/ContactForm'
 import { prisma } from '@/lib/prisma'
+import type { Contact } from '@prisma/client'
 import type { Metadata } from 'next'
 
 // Ricarica i dati ogni 60 secondi
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   },
 }
 
-async function getContacts() {
+async function getContacts(): Promise<Contact[]> {
   return await prisma.contact.findMany({
     where: { isActive: true },
     orderBy: { order: 'asc' }
