@@ -18,6 +18,7 @@ const FALLBACK_CONTACTS = {
   email:     'jeinsubria@gmail.com',
   phone:     '+39 3298999219',
   address:   'Via Stefano da Seregno n.31, 20831 Seregno (MB)',
+  vatNumber: '14402760962',
   facebook:  'https://www.facebook.com/jeinsubria',
   instagram: 'https://www.instagram.com/jeinsubria',
   linkedin:  'https://www.linkedin.com/company/jeinsubria',
@@ -119,9 +120,19 @@ export default async function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-12 pt-8 text-center">
+        <div className="border-t border-white/10 mt-12 pt-8 text-center space-y-3">
+          <div className="text-neutral-400 text-sm space-y-1">
+            <p>
+              <span className="text-neutral-300 font-medium">Sede legale:</span>{' '}
+              {address}
+            </p>
+            <p>
+              <span className="text-neutral-300 font-medium">P.IVA:</span>{' '}
+              {FALLBACK_CONTACTS.vatNumber}
+            </p>
+          </div>
           <p className="text-neutral-500 text-sm">
-            © {new Date().getFullYear()} JUNIOR ENTERPRISE DELL’UNIVERSITA’ DEGLI STUDI DELL’INSUBRIA. Tutti i diritti riservati.
+            © {new Date().getFullYear()} JUNIOR ENTERPRISE DELL&apos;UNIVERSITA&apos; DEGLI STUDI DELL&apos;INSUBRIA. Tutti i diritti riservati.
           </p>
         </div>
       </div>
