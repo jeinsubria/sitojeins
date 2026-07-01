@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useCallback, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface Service {
@@ -32,18 +32,48 @@ const panelGradients: Record<string, string> = {
   'Data & Analytics': 'from-teal-900/20 to-transparent',
 }
 
+const AUTO_INTERVAL_MS = 5000
+const MANUAL_PAUSE_MS = 8000
+
 export default function ServicesScrollDriven({ services }: Props) {
   const [active, setActive] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
   const leftColRef = useRef<HTMLDivElement>(null)
   const accumulatorRef = useRef(0)
   const isHoveringRef = useRef(false)
   const activeRef = useRef(0)
+  const manualPauseUntilRef = useRef(0)
   const THRESHOLD = 80
+
+  const selectService = (index: number) => {
+    setActive(index)
+    manualPauseUntilRef.current = Date.now() + MANUAL_PAUSE_MS
+  }
 
   // Teniamo activeRef sincronizzato per usarlo dentro il listener DOM
   useEffect(() => { activeRef.current = active }, [active])
   useEffect(() => { isHoveringRef.current = isHovering }, [isHovering])
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReducedMotion(mq.matches)
+    const onChange = () => setReducedMotion(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  useEffect(() => {
+    if (reducedMotion || services.length <= 1) return
+
+    const id = setInterval(() => {
+      if (isHoveringRef.current) return
+      if (Date.now() < manualPauseUntilRef.current) return
+      setActive((prev) => (prev + 1) % services.length)
+    }, AUTO_INTERVAL_MS)
+
+    return () => clearInterval(id)
+  }, [services.length, reducedMotion])
 
   // Listener DOM con passive:false — l'unico modo per bloccare lo scroll della pagina
   useEffect(() => {
@@ -61,9 +91,11 @@ export default function ServicesScrollDriven({ services }: Props) {
       if (accumulatorRef.current > THRESHOLD) {
         accumulatorRef.current = 0
         setActive((prev) => Math.min(prev + 1, services.length - 1))
+        manualPauseUntilRef.current = Date.now() + MANUAL_PAUSE_MS
       } else if (accumulatorRef.current < -THRESHOLD) {
         accumulatorRef.current = 0
         setActive((prev) => Math.max(prev - 1, 0))
+        manualPauseUntilRef.current = Date.now() + MANUAL_PAUSE_MS
       }
     }
 
@@ -93,7 +125,7 @@ export default function ServicesScrollDriven({ services }: Props) {
             {services.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setActive(i)}
+                onClick={() => selectService(i)}
                 className={`h-[2px] rounded-full transition-all duration-300 ${
                   i === active ? 'w-6 bg-insubria-500' : 'w-2 bg-white/15 hover:bg-white/30'
                 }`}
@@ -120,11 +152,11 @@ export default function ServicesScrollDriven({ services }: Props) {
           </motion.div>
         </AnimatePresence>
 
-        {/* Hint */}
+        {/* Hint — visibile solo su desktop */}
         <motion.p
-          animate={{ opacity: isHovering ? 0 : [0.3, 0.6, 0.3] }}
+          animate={{ opacity: isHovering ? 0 : [0.7, 1, 0.7] }}
           transition={{ repeat: Infinity, duration: 2.5 }}
-          className="mt-8 text-xs text-neutral-600 font-mono tracking-widest flex items-center gap-2 pointer-events-none"
+          className="mt-8 text-sm text-white font-mono tracking-widest hidden md:flex items-center gap-2 pointer-events-none"
         >
           ↕ SCORRI QUI PER ESPLORARE
         </motion.p>
