@@ -34,11 +34,13 @@ const panelGradients: Record<string, string> = {
 
 const AUTO_INTERVAL_MS = 5000
 const MANUAL_PAUSE_MS = 8000
+const MOBILE_MEDIA_QUERY = '(max-width: 767px)'
 
 export default function ServicesScrollDriven({ services }: Props) {
   const [active, setActive] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const leftColRef = useRef<HTMLDivElement>(null)
   const accumulatorRef = useRef(0)
   const isHoveringRef = useRef(false)
@@ -64,16 +66,23 @@ export default function ServicesScrollDriven({ services }: Props) {
   }, [])
 
   useEffect(() => {
-    if (reducedMotion || services.length <= 1) return
+    const mq = window.matchMedia(MOBILE_MEDIA_QUERY)
+    setIsMobile(mq.matches)
+    const onChange = () => setIsMobile(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  useEffect(() => {
+    if (!isMobile || reducedMotion || services.length <= 1) return
 
     const id = setInterval(() => {
-      if (isHoveringRef.current) return
       if (Date.now() < manualPauseUntilRef.current) return
       setActive((prev) => (prev + 1) % services.length)
     }, AUTO_INTERVAL_MS)
 
     return () => clearInterval(id)
-  }, [services.length, reducedMotion])
+  }, [isMobile, services.length, reducedMotion])
 
   // Listener DOM con passive:false — l'unico modo per bloccare lo scroll della pagina
   useEffect(() => {
