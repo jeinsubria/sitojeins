@@ -28,8 +28,8 @@ export default function StructuredData() {
       "email": "jeinsubria@gmail.com"
     },
     "sameAs": [
-      "https://www.linkedin.com/company/jeinsubria",
-      "https://www.instagram.com/jeinsubria",
+      "https://it.linkedin.com/company/jeins",
+      "https://www.instagram.com/jeins.consulting/",
       "https://www.facebook.com/jeinsubria"
     ],
     "memberOf": {

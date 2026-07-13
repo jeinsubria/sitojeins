@@ -75,9 +75,9 @@ export default function ContactForm({ contact }: ContactFormProps) {
       case 'facebook':
         return 'https://facebook.com/jeins.insubria'
       case 'instagram':
-        return 'https://instagram.com/jeins_insubria'
+        return 'https://www.instagram.com/jeins.consulting/'
       case 'linkedin':
-        return 'https://linkedin.com/company/jeins'
+        return 'https://it.linkedin.com/company/jeins'
       default:
         return ''
     }

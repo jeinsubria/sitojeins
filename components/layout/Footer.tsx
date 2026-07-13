@@ -19,8 +19,8 @@ const FALLBACK_CONTACTS = {
   phone:     '+39 3298999219',
   address:   'Via Stefano da Seregno n.31, 20831 Seregno (MB)',
   vatNumber: '14402760962',
-  instagram: 'https://www.instagram.com/jeinsubria',
-  linkedin:  'https://www.linkedin.com/company/jeinsubria',
+  instagram: 'https://www.instagram.com/jeins.consulting/',
+  linkedin:  'https://it.linkedin.com/company/jeins',
 }
 
 export default async function Footer() {

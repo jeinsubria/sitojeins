@@ -40,8 +40,8 @@ async function main() {
     { type: 'phone', value: '+39 3298999219', label: 'Telefono' },
     { type: 'address', value: 'Via Stefano da Seregno n.31, 20831 Seregno (MB)', label: 'Sede legale' },
     { type: 'facebook', value: 'https://www.facebook.com/jeinsubria', label: 'Facebook' },
-    { type: 'instagram', value: 'https://www.instagram.com/jeinsubria', label: 'Instagram' },
-    { type: 'linkedin', value: 'https://linkedin.com/company/jeinsubria', label: 'LinkedIn' },
+    { type: 'instagram', value: 'https://www.instagram.com/jeins.consulting/', label: 'Instagram' },
+    { type: 'linkedin', value: 'https://it.linkedin.com/company/jeins', label: 'LinkedIn' },
   ]
 
   for (const contact of defaultContacts) {

@@ -274,8 +274,8 @@ async function seedDatabase() {
     { type: 'phone', value: '+39 0332 218811', label: 'Telefono' },
     { type: 'address', value: 'Via Ravasi, 2, 21100 Varese VA', label: 'Sede principale' },
     { type: 'facebook', value: 'https://facebook.com/jeins.insubria', label: 'Facebook' },
-    { type: 'instagram', value: 'https://instagram.com/jeins_insubria', label: 'Instagram' },
-    { type: 'linkedin', value: 'https://linkedin.com/company/jeins', label: 'LinkedIn' },
+    { type: 'instagram', value: 'https://www.instagram.com/jeins.consulting/', label: 'Instagram' },
+    { type: 'linkedin', value: 'https://it.linkedin.com/company/jeins', label: 'LinkedIn' },
   ]
 
   for (const contact of contacts) {
