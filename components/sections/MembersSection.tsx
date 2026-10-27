@@ -4,9 +4,10 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 
 const boardMembers = [
-  { name: 'Riccardo Cavaretta', role: 'Presidente', image: '/images/team/riccardo-cavaretta.jpg' },
-  { name: 'Gabriele', role: 'International Manager', image: '/images/team/gabriele.jpg' },
-  { name: 'Ksenia', role: 'Segretaria', image: '/images/team/ksenia.jpg' },
+  { name: 'Riccardo Cavarretta', role: 'Presidente', image: '/images/team/riccardo-cavarretta.jpg' },
+  { name: 'Gabriele Fossati', role: 'International Manager', image: '/images/team/gabriele.jpg' },
+  { name: 'Kesniia Skorokyrzha', role: 'Segretaria Generale', image: '/images/team/ksenia.jpg' },
+  { name: 'Marco Toni', role: 'Tesoriere', image: '/images/team/marco-toni.jpg' },
 ]
 
 const managers = [
