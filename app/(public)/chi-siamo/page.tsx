@@ -1,19 +1,12 @@
-import TeamMember from '@/components/ui/TeamMember'
-import { prisma } from '@/lib/prisma'
-import type { TeamMember as TeamMemberModel } from '@prisma/client'
-
 import type { Metadata } from 'next'
 
-// Ricarica i dati ogni 60 secondi
-export const revalidate = 60
-
 export const metadata: Metadata = {
-  title: 'Chi Siamo - JEIns | Il Team e la Nostra Missione',
-  description: 'Scopri JEIns, la Junior Enterprise dell\'Università dell\'Insubria. Conosci il nostro team di studenti motivati, la nostra missione e i valori che ci guidano nel fornire consulenza aziendale di qualità.',
-  keywords: 'team JEIns, missione Junior Enterprise, valori universitari, studenti Insubria, chi siamo JEIns',
+  title: 'Chi Siamo - JEIns | La Nostra Missione e i Nostri Valori',
+  description: 'Scopri JEIns, la Junior Enterprise dell\'Università dell\'Insubria. Conosci la nostra missione e i valori che ci guidano nel fornire consulenza aziendale di qualità.',
+  keywords: 'missione Junior Enterprise, valori universitari, studenti Insubria, chi siamo JEIns',
   openGraph: {
-    title: 'Chi Siamo - JEIns | Il Team e la Nostra Missione',
-    description: 'Scopri JEIns, la Junior Enterprise dell\'Università dell\'Insubria. Conosci il nostro team di studenti motivati e la nostra missione.',
+    title: 'Chi Siamo - JEIns | La Nostra Missione e i Nostri Valori',
+    description: 'Scopri JEIns, la Junior Enterprise dell\'Università dell\'Insubria. Conosci la nostra missione e i nostri valori.',
     url: 'https://jeins.it/chi-siamo',
   },
   alternates: {
@@ -21,23 +14,11 @@ export const metadata: Metadata = {
   },
 }
 
-async function getTeamMembers(): Promise<TeamMemberModel[]> {
-  const members = await prisma.teamMember.findMany({
-    where: { isActive: true },
-    orderBy: { order: 'asc' }
-  })
-  return members
-}
-
-export default async function ChiSiamoPage() {
-  const teamMembers = await getTeamMembers()
-
+export default function ChiSiamoPage() {
   return (
     <main>
       {/* Hero Section */}
       <section className="py-32 relative overflow-hidden">
-
-        
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-in-up">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 newspaper-headline tracking-tighter text-white">
@@ -93,54 +74,6 @@ export default async function ChiSiamoPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Il Team */}
-      <section className="py-32 relative">
-
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20 animate-fade-in-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 newspaper-headline tracking-tighter">
-              Il nostro team
-            </h2>
-            <p className="text-neutral-400 text-xl max-w-3xl mx-auto font-light">
-              Gli studenti che rendono possibile JEIns e che portano innovazione 
-              nel territorio insubre
-            </p>
-          </div>
-          
-          {teamMembers.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-neutral-500 text-lg">
-                I membri del team verranno aggiunti a breve.
-              </p>
-            </div>
-          ) : (
-            <div className={`grid gap-8 justify-items-center ${
-              teamMembers.length === 1 ? 'grid-cols-1 max-w-md mx-auto' :
-              teamMembers.length === 2 ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto' :
-              teamMembers.length === 3 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' :
-              teamMembers.length === 4 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4' :
-              'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-            }`}>
-              {teamMembers.map((member, index) => (
-                <div 
-                  key={member.id} 
-                  className={`animate-fade-in-left hover-lift w-full`}
-                  style={{animationDelay: `${index * 0.1}s`}}
-                >
-                  <TeamMember
-                    name={member.name}
-                    role={member.role}
-                    image={member.image || undefined}
-                    description={member.description || undefined}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </section>
     </main>
