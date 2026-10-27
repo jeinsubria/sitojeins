@@ -27,7 +27,7 @@ export default function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'Chi siamo', href: '/chi-siamo' },
     { name: 'Servizi', href: '/servizi' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Membri', href: '/membri' },
     { name: 'Contatti', href: '/contatti' },
   ]
 
