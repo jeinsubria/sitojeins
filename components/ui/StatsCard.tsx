@@ -7,7 +7,7 @@ interface StatsCardProps {
 export default function StatsCard({ number, label, description }: StatsCardProps) {
   return (
     <div className="text-center">
-      <div className="text-4xl md:text-5xl font-bold text-insubria-600 mb-2">
+      <div className="text-3xl md:text-4xl font-bold text-insubria-600 mb-2">
         {number}
       </div>
       <div className="text-lg font-semibold text-neutral-900 mb-1">

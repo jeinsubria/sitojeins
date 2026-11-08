@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import MandatoCarousel from '@/components/sections/MandatoCarousel'
 
 export const metadata: Metadata = {
   title: 'Chi Siamo - JEIns | La Nostra Missione e i Nostri Valori',
@@ -21,7 +22,7 @@ export default function ChiSiamoPage() {
       <section className="py-32 relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-in-up">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 newspaper-headline tracking-tighter text-white">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 newspaper-headline tracking-tighter text-white">
               Chi siamo
             </h1>
             <p className="text-xl max-w-3xl mx-auto text-neutral-400 font-light leading-relaxed">
@@ -54,10 +55,13 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
+      {/* Carosello foto del mandato */}
+      <MandatoCarousel />
+
       {/* Valori */}
       <section className="py-32 relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold newspaper-headline text-white mb-20 animate-fade-in-up">
+          <h2 className="text-3xl md:text-4xl font-bold newspaper-headline text-white mb-20 animate-fade-in-up">
             I nostri valori
           </h2>
 

@@ -23,10 +23,8 @@ export const metadata: Metadata = {
 const fallbackServices = [
   { id: '1', title: 'Business Plan', description: 'Analizziamo il contesto, definiamo il modello di business e costruiamo un documento strategico utile a orientare scelte, investimenti e sviluppo.', sector: 'Business', icon: null, isActive: true, order: 0, createdAt: new Date(), updatedAt: new Date() },
   { id: '2', title: 'Comunicazione & Marketing Compass', description: 'Studiamo comunicazione, mercato e competitor per aiutarti a definire un posizionamento più chiaro, coerente ed efficace.', sector: 'Marketing', icon: null, isActive: true, order: 1, createdAt: new Date(), updatedAt: new Date() },
-  { id: '3', title: 'Gestione e ottimizzazione degli hashtag', description: 'Selezioniamo gli hashtag più adatti ai tuoi contenuti e ai tuoi obiettivi per migliorare visibilità, coerenza e reach organica.', sector: 'Social Media', icon: null, isActive: true, order: 2, createdAt: new Date(), updatedAt: new Date() },
-  { id: '4', title: 'E-commerce', description: 'Progettiamo soluzioni per la vendita online funzionali, semplici da usare e sostenibili, pensate per aprire o rafforzare un canale digitale.', sector: 'Digital', icon: null, isActive: true, order: 3, createdAt: new Date(), updatedAt: new Date() },
-  { id: '5', title: 'Sviluppo applicativi', description: 'Progettiamo applicativi costruiti intorno ai processi e alle esigenze specifiche della tua attività, trasformando un bisogno operativo in una soluzione concreta.', sector: 'IT', icon: null, isActive: true, order: 4, createdAt: new Date(), updatedAt: new Date() },
-  { id: '6', title: 'Sviluppo app web', description: 'Realizziamo web app intuitive e progettate sui bisogni reali degli utenti, con attenzione a struttura, usabilità e sostenibilità del progetto.', sector: 'IT', icon: null, isActive: true, order: 5, createdAt: new Date(), updatedAt: new Date() },
+  { id: '3', title: 'Social Media Management', description: 'Gestiamo i tuoi canali social con un piano editoriale su misura: creazione dei contenuti, pubblicazione e analisi dei risultati, per far crescere community e visibilità del tuo brand.', sector: 'Social Media', icon: null, isActive: true, order: 2, createdAt: new Date(), updatedAt: new Date() },
+  { id: '4', title: 'Sviluppo app web', description: 'Realizziamo web app intuitive e progettate sui bisogni reali degli utenti, con attenzione a struttura, usabilità e sostenibilità del progetto.', sector: 'IT', icon: null, isActive: true, order: 3, createdAt: new Date(), updatedAt: new Date() },
 ]
 
 async function getServices() {
@@ -51,7 +49,7 @@ export default async function ServiziPage() {
 
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in-up">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 newspaper-headline tracking-tighter">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 newspaper-headline tracking-tighter">
             I nostri servizi
           </h1>
           <p className="text-xl max-w-3xl mx-auto text-neutral-400 font-light leading-relaxed">
@@ -75,7 +73,7 @@ export default async function ServiziPage() {
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-24 animate-fade-in-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 newspaper-headline">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 newspaper-headline">
               Il nostro processo di lavoro
             </h2>
             <p className="text-neutral-400 text-lg md:text-xl font-light">
@@ -94,7 +92,7 @@ export default async function ServiziPage() {
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-in-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 newspaper-headline tracking-tighter">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 newspaper-headline tracking-tighter">
               Pronto a iniziare il tuo progetto?
             </h2>
             <p className="text-neutral-400 text-lg md:text-xl mb-12 font-light leading-relaxed max-w-2xl mx-auto">

@@ -94,6 +94,9 @@ export default async function Footer() {
               <Link href="/membri" className="block text-neutral-400 hover:text-white transition-colors">
                 Membri
               </Link>
+              <Link href="/network" className="block text-neutral-400 hover:text-white transition-colors">
+                Network
+              </Link>
             </div>
           </div>
 
@@ -121,7 +124,7 @@ export default async function Footer() {
               {address}
             </p>
             <p>
-              <span className="text-neutral-300 font-medium">P.IVA:</span>{' '}
+              <span className="text-neutral-300 font-medium">Codice Fiscale e P.IVA:</span>{' '}
               {FALLBACK_CONTACTS.vatNumber}
             </p>
           </div>

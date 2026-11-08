@@ -12,7 +12,7 @@ export default function TermsPage() {
       <section className="py-32 relative overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16 animate-fade-in-up">
-            <h1 className="text-5xl font-bold newspaper-headline text-white mb-4">Termini e Condizioni</h1>
+            <h1 className="text-4xl font-bold newspaper-headline text-white mb-4">Termini e Condizioni</h1>
             <p className="text-neutral-400 font-light">Versione 1.0 — Ultima modifica: 10/04/2026</p>
           </div>
 

@@ -11,10 +11,10 @@ const boardMembers = [
 ]
 
 const managers = [
-  { name: 'Responsabile IT', department: 'Area IT', image: '/images/team/responsabile-it.jpg' },
-  { name: 'Responsabile HR', department: 'Area HR', image: '/images/team/responsabile-hr.jpg' },
-  { name: 'Manager Commerciale & Legal', department: 'Area Commerciale e Legal', image: '/images/team/manager-commerciale-legal.jpg' },
-  { name: 'Responsabile Marketing', department: 'Area Marketing', image: '/images/team/responsabile-marketing.jpg' },
+  { name: 'Matteo Di Liberto', department: 'Responsabile IT', image: '/images/team/matteo-di-liberto.jpg' },
+  { name: 'Luis Torres', department: 'Responsabile Risorse Umane & Audit', image: '/images/team/luis-torres.jpg' },
+  { name: 'Valentina Marchio', department: 'Responsabile Commerciale & Legale', image: '/images/team/manager-commerciale-legal.jpg' },
+  { name: 'Aurora Cecco', department: 'Responsabile Marketing & Comunicazione', image: '/images/team/responsabile-marketing.jpg' },
 ]
 
 export default function MembersSection() {
@@ -78,7 +78,7 @@ export default function MembersSection() {
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                   >
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">{member.name}</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{member.name}</h3>
                     <p className="text-xl text-insubria-500 font-medium">{member.role}</p>
                   </motion.div>
                 </div>
@@ -91,7 +91,7 @@ export default function MembersSection() {
       {/* Sezione Managers (Carosello Marquee) */}
       <div className="py-24 bg-neutral-900/50 border-t border-white/5 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
-          <h2 className="text-4xl font-bold text-white mb-4">I nostri Manager</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">I responsabili delle nostre aree</h2>
           <p className="text-neutral-400 text-lg">Le figure chiave che guidano i nostri dipartimenti</p>
         </div>
 

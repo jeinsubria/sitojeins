@@ -25,8 +25,8 @@ export default async function HomePage() {
       {/* Hero Section */}
       {sectionConfig.hero?.isActive && (
         <Hero
-          title={sectionConfig.hero.title || "La realtà che unisce il mondo accademico a quello del lavoro"}
-          subtitle={sectionConfig.hero.subtitle || 'Consulenza, progetti e crescita: per aziende e studenti'}
+          title="Il ponte tra il mondo accademico e quello del lavoro"
+          subtitle="Siamo studenti dell'Università dell'Insubria riuniti in un'associazione no profit, parte della confederazione nazionale di JE Italy. Ogni progetto che realizziamo per aziende e territorio diventa per noi un'occasione di crescita, più pronti per il mercato del lavoro"
           primaryCta="Richiedi un preventivo"
           secondaryCta="Unisciti a noi"
           primaryCtaHref="/contatti"
@@ -40,7 +40,7 @@ export default async function HomePage() {
         <section className="py-32 relative overflow-hidden">
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-20 animate-slide-in-top">
-              <h2 className="text-4xl md:text-5xl font-bold newspaper-headline">
+              <h2 className="text-3xl md:text-4xl font-bold newspaper-headline">
                 {sectionConfig.services.title || 'I nostri servizi'}
               </h2>
             </div>
@@ -90,7 +90,7 @@ export default async function HomePage() {
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-24 animate-slide-in-bottom">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 newspaper-headline">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 newspaper-headline">
                 {sectionConfig.stats.title || 'I nostri numeri'}
               </h2>
               <p className="text-neutral-400 text-lg md:text-xl max-w-3xl mx-auto font-light leading-relaxed">
@@ -106,7 +106,7 @@ export default async function HomePage() {
                 { value: stats.applications, suffix: '+', label: 'Candidature', sub: '' }
               ].map((stat, i) => (
                 <div key={i} className="px-8 py-6 text-center animate-scale-in" style={{animationDelay: `${i * 0.1}s`}}>
-                  <div className="text-5xl md:text-7xl font-bold text-white mb-3 tracking-tighter">
+                  <div className="text-4xl md:text-6xl font-bold text-white mb-3 tracking-tighter">
                     <AnimatedNumber value={stat.value} suffix={stat.suffix} />
                   </div>
                   <div className="text-sm font-medium text-insubria-500 mb-1 uppercase tracking-widest">
@@ -131,7 +131,7 @@ export default async function HomePage() {
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-24 animate-zoom-in">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 newspaper-headline">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 newspaper-headline">
                 {sectionConfig.portfolio.title || 'I nostri progetti'}
               </h2>
               <p className="text-neutral-400 text-lg md:text-xl max-w-3xl mx-auto font-light leading-relaxed">

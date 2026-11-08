@@ -155,7 +155,7 @@ export default function ServicesScrollDriven({ services }: Props) {
             <span className={`text-xs font-semibold uppercase tracking-wide mb-4 block ${accentColors[current?.sector] || 'text-insubria-500'}`}>
               {current?.sector}
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tighter">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tighter">
               {current?.title}
             </h2>
           </motion.div>

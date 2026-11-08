@@ -45,15 +45,15 @@ export default function Hero({
       <div className="absolute inset-0 bg-gradient-to-t from-insubria-900 via-transparent to-transparent" />
       
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         <FadeIn delay={0.2} direction="down">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-[1.4rem] leading-snug sm:text-3xl md:text-5xl md:leading-tight font-bold text-white mb-6 text-balance">
             {title}
           </h1>
         </FadeIn>
         
         <FadeIn delay={0.4}>
-          <p className="text-xl md:text-2xl text-neutral-300 mb-8 max-w-2xl mx-auto font-light">
+          <p className="text-lg md:text-xl text-neutral-300 mb-8 max-w-3xl mx-auto font-light leading-relaxed">
             {subtitle}
           </p>
         </FadeIn>

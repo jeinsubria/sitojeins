@@ -88,7 +88,7 @@ export default async function RecruitmentPage() {
         <div className="decorative-strip decorative-strip-bottom"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 newspaper-headline">
+          <h1 className="text-3xl md:text-4xl font-bold mb-6 newspaper-headline">
             Unisciti al nostro team
           </h1>
           <p className="text-xl max-w-3xl mx-auto">

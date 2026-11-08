@@ -37,7 +37,7 @@ export async function getHomeData() {
 
     const stats = {
       projects: 10,
-      services: 6,
+      services: 4,
       team: 35,
       applications: 100,
     }
@@ -45,7 +45,7 @@ export async function getHomeData() {
     const fallbackServices = [
       { id: '1', title: 'Business Plan', description: 'Analizziamo il contesto, definiamo il modello di business e costruiamo un documento strategico utile a orientare scelte, investimenti e sviluppo.', sector: 'Business' },
       { id: '2', title: 'Comunicazione & Marketing Compass', description: 'Studiamo comunicazione, mercato e competitor per aiutarti a definire un posizionamento più chiaro, coerente ed efficace.', sector: 'Marketing' },
-      { id: '3', title: 'E-commerce', description: 'Progettiamo soluzioni per la vendita online funzionali, semplici da usare e sostenibili, pensate per aprire o rafforzare un canale digitale.', sector: 'Digital' }
+      { id: '3', title: 'Social Media Management', description: 'Gestiamo i tuoi canali social con un piano editoriale su misura: creazione dei contenuti, pubblicazione e analisi dei risultati, per far crescere community e visibilità del tuo brand.', sector: 'Social Media' }
     ];
 
     // Se il database è vuoto o fallisce, usiamo i fallback per non rompere il design
@@ -63,10 +63,10 @@ export async function getHomeData() {
       services: [
         { id: '1', title: 'Business Plan', description: 'Analizziamo il contesto, definiamo il modello di business e costruiamo un documento strategico utile a orientare scelte, investimenti e sviluppo.', sector: 'Business' },
         { id: '2', title: 'Comunicazione & Marketing Compass', description: 'Studiamo comunicazione, mercato e competitor per aiutarti a definire un posizionamento più chiaro, coerente ed efficace.', sector: 'Marketing' },
-        { id: '3', title: 'E-commerce', description: 'Progettiamo soluzioni per la vendita online funzionali, semplici da usare e sostenibili, pensate per aprire o rafforzare un canale digitale.', sector: 'Digital' }
+        { id: '3', title: 'Social Media Management', description: 'Gestiamo i tuoi canali social con un piano editoriale su misura: creazione dei contenuti, pubblicazione e analisi dei risultati, per far crescere community e visibilità del tuo brand.', sector: 'Social Media' }
       ],
       projects: [],
-      stats: { projects: 10, services: 6, team: 35, applications: 100 },
+      stats: { projects: 10, services: 4, team: 35, applications: 100 },
       sections: []
     }
   }

@@ -13,7 +13,7 @@ export default function CookiePolicyPage() {
       <section className="py-32 relative overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16 animate-fade-in-up">
-            <h1 className="text-5xl font-bold newspaper-headline text-white mb-4">Cookie Policy</h1>
+            <h1 className="text-4xl font-bold newspaper-headline text-white mb-4">Cookie Policy</h1>
             <p className="text-neutral-400 font-light">JUNIOR ENTERPRISE DELL&apos;UNIVERSITA&apos; DEGLI STUDI DELL&apos;INSUBRIA — 2025/2026 · Ultimo aggiornamento: Giugno 2026</p>
           </div>
 
