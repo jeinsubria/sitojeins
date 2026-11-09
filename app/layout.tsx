@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: 'JEIns - Junior Enterprise Insubria',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/images/hero-universita.jpg',
         width: 1200,
         height: 630,
         alt: 'JEIns - Junior Enterprise Insubria',
@@ -51,10 +51,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'JEIns - Junior Enterprise Insubria',
     description: 'Consulenza aziendale e progetti universitari per studenti e aziende dell\'Università dell\'Insubria.',
-    images: ['/images/og-image.jpg'],
-  },
-  verification: {
-    google: 'your-google-verification-code',
+    images: ['/images/hero-universita.jpg'],
   },
   alternates: {
     canonical: 'https://jeins.it',

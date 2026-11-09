@@ -16,10 +16,11 @@ export const metadata: Metadata = {
 
 const JE_ITALY_URL = 'https://jeitaly.org/network/'
 
+// Per ogni partner: description è la riga su cosa abbiamo fatto insieme (lasciala vuota per non mostrarla)
 const partners = [
-  { name: 'Forbes Next Leaders', image: '/images/partner/forbes-next-leaders.jpg' },
-  { name: 'Assoconsult', image: '/images/partner/assoconsult.jpg' },
-  { name: 'Joinrs', image: '/images/partner/joinrs.jpg' },
+  { name: 'Forbes Next Leaders', image: '/images/partner/forbes-next-leaders.jpg', url: 'https://nextleaders.forbes.it', description: 'Next Leaders è il progetto di Forbes Italia dedicato agli studenti universitari. La partnership dà valore ai nostri associati, offrendo loro visibilità e occasioni di crescita nel contesto editoriale di Forbes.' },
+  { name: 'Assoconsult', image: '/images/partner/assoconsult.jpg', url: 'https://assoconsult.org', description: 'Insieme ad Assoconsult abbiamo organizzato Next JEn Consulting, l\'evento che avvicina gli studenti al mondo della consulenza.' },
+  { name: 'Joinrs', image: '/images/partner/joinrs.jpg', url: 'https://www.joinrs.com/it', description: 'Joinrs è la piattaforma italiana che aiuta i giovani a trovare lavoro, proponendo a ciascuno le offerte più adatte al proprio profilo. Insieme abbiamo portato avanti una campagna social per avvicinare gli studenti alle opportunità di stage e lavoro.' },
 ]
 
 export default function NetworkPage() {
@@ -92,13 +93,24 @@ export default function NetworkPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {partners.map((partner, i) => (
-              <div
+              <a
                 key={partner.name}
-                className="bg-white rounded-2xl h-48 flex items-center justify-center p-8 shadow-xl animate-fade-in-up hover-lift"
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col gap-4 animate-fade-in-up"
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
-                <img src={partner.image} alt={`Logo ${partner.name}`} className="max-h-full max-w-full object-contain" />
-              </div>
+                <div className="bg-white rounded-2xl h-48 flex items-center justify-center p-8 shadow-xl hover-lift">
+                  <img src={partner.image} alt={`Logo ${partner.name}`} className="max-h-full max-w-full object-contain" />
+                </div>
+                {partner.description && (
+                  <p className="text-neutral-400 font-light leading-relaxed">{partner.description}</p>
+                )}
+                <span className="text-insubria-400 text-sm font-medium group-hover:text-white transition-colors">
+                  Visita il sito di {partner.name} →
+                </span>
+              </a>
             ))}
           </div>
         </div>

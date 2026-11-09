@@ -13,7 +13,13 @@ export default function AnimatedNumber({ value, suffix = '', duration = 2 }: Ani
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const springValue = useSpring(0, { duration: duration * 1000, bounce: 0 })
-  const [displayValue, setDisplayValue] = useState(0)
+  // Il valore finale è già nell'HTML, così lo vede anche chi non esegue JavaScript (es. Google).
+  // Dopo il caricamento si riparte da 0 per l'animazione.
+  const [displayValue, setDisplayValue] = useState(value)
+
+  useEffect(() => {
+    setDisplayValue(0)
+  }, [])
 
   useEffect(() => {
     if (isInView) {

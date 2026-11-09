@@ -26,7 +26,7 @@ export default async function HomePage() {
       {sectionConfig.hero?.isActive && (
         <Hero
           title="Il ponte tra il mondo accademico e quello del lavoro"
-          subtitle="Siamo studenti dell'Università dell'Insubria riuniti in un'associazione no profit, parte della confederazione nazionale di JE Italy. Ogni progetto che realizziamo per aziende e territorio diventa per noi un'occasione di crescita, più pronti per il mercato del lavoro"
+          subtitle="Siamo studenti dell'Università dell'Insubria riuniti in un'associazione no profit, parte della confederazione nazionale di JE Italy. Ogni progetto che realizziamo per aziende e territorio diventa per noi un'occasione per crescere e prepararci al mondo del lavoro."
           primaryCta="Richiedi un preventivo"
           secondaryCta="Unisciti a noi"
           primaryCtaHref="/contatti"

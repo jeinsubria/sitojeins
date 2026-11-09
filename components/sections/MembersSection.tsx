@@ -1,24 +1,29 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const boardMembers = [
   { name: 'Riccardo Cavarretta', role: 'Presidente', image: '/images/team/riccardo-cavarretta.jpg' },
   { name: 'Gabriele Fossati', role: 'International Manager', image: '/images/team/gabriele.jpg' },
-  { name: 'Kesniia Skorokyrzha', role: 'Segretaria Generale', image: '/images/team/ksenia.jpg' },
+  { name: 'Kseniia Skorokyrzha', role: 'Segretaria Generale', image: '/images/team/kseniia-skorokyrzha.jpg' },
   { name: 'Marco Toni', role: 'Tesoriere', image: '/images/team/marco-toni.jpg' },
 ]
 
 const managers = [
   { name: 'Matteo Di Liberto', department: 'Responsabile IT', image: '/images/team/matteo-di-liberto.jpg' },
   { name: 'Luis Torres', department: 'Responsabile Risorse Umane & Audit', image: '/images/team/luis-torres.jpg' },
-  { name: 'Valentina Marchio', department: 'Responsabile Commerciale & Legale', image: '/images/team/manager-commerciale-legal.jpg' },
-  { name: 'Aurora Cecco', department: 'Responsabile Marketing & Comunicazione', image: '/images/team/responsabile-marketing.jpg' },
+  { name: 'Valentina Marchio', department: 'Responsabile Commerciale & Legale', image: '/images/team/valentina-marchio.jpg' },
+  { name: 'Aurora Cecco', department: 'Responsabile Marketing & Comunicazione', image: '/images/team/aurora-cecco.jpg' },
 ]
 
 export default function MembersSection() {
   const containerRef = useRef<HTMLDivElement>(null)
+  // Nell'HTML iniziale i responsabili compaiono una sola volta (li legge così chi non esegue JavaScript, es. Google);
+  // dopo il caricamento vengono duplicati per far girare il carosello senza interruzioni.
+  const [carouselReady, setCarouselReady] = useState(false)
+  useEffect(() => setCarouselReady(true), [])
+  const carouselItems = carouselReady ? [...managers, ...managers, ...managers, ...managers] : managers
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -103,8 +108,8 @@ export default function MembersSection() {
             transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
           >
             {/* Duplichiamo gli elementi per garantire un loop continuo al 50% */}
-            {[...managers, ...managers, ...managers, ...managers].map((manager, i) => (
-              <div key={i} className="w-72 flex-shrink-0 inline-flex flex-col gap-4">
+            {carouselItems.map((manager, i) => (
+              <div key={i} aria-hidden={i >= managers.length ? true : undefined} className="w-72 flex-shrink-0 inline-flex flex-col gap-4">
                 <div className="w-full aspect-square bg-neutral-950 border border-white/10 rounded-2xl relative overflow-hidden shadow-xl">
                   {manager.image ? (
                     <img 
